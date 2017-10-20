@@ -103,7 +103,7 @@ var Socket={						//the socket object
 			}
 			this.sendMessage(JSON.stringify(val));
 		},
-		sendServerMessage:function(key,value,Event){
+		sendServerMessage:function(key,value,actionType){
 			//if addExtended path ==true, add escaped(smartDashboard) to key
 				if((typeof key)=="string"){
 						//key=RegExp.unescape(key);
@@ -111,7 +111,7 @@ var Socket={						//the socket object
 			var val={
 				"key":key,
 				"value":value,
-				"action":Event
+				"action":actionType
 			}
 			this.sendMessage(JSON.stringify(val));
 		}
