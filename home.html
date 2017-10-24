@@ -86,6 +86,7 @@
 
    var $submitActors = $("#submitUsernameForm").find('input[type=submit]');
    $submitActors.click(function(event) {
+          console.log("Submit button clicked "+this.id);
           submitActor = this;
       });
    var filterGroup={
@@ -271,10 +272,7 @@
               submitActor = $submitActors[0];
           }
 
-          console.log(submitActor.name);
-          // alert(submitActor.name);
-
-          return false;
+          console.log(submitActor.id);
          if(socket){
          var username=$('#usernameField').val();
          var actionType="username";
@@ -286,12 +284,10 @@
            }
          }
          else{
-           if(submitActor.id=="SubredditSubmitButton"){
              var indexOf=username.indexOf("reddit.com/user/");
              if(indexOf!=-1){
                 username=username.substring(indexOf+"reddit.com/user/".length);
              }
-           }
          }
          var maxPages=$("#maxPagesInput").val();
          var submittedFilterGroups=[];
@@ -301,12 +297,13 @@
                submittedFilterGroups.push(filterGroups[a]);
             }
          }
+         console.log("Submission Check");
          var doDefault=document.getElementById("doDefault").checked;
          var submittedPackage={'username':username,"action":actionType,"doDefault":doDefault,'maxPages':maxPages,
          'filterGroups':submittedFilterGroups};
          Socket.sendJsonValue(submittedPackage);
         }
-        });
+      });
 
 </script>
 </body>
