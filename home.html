@@ -20,9 +20,10 @@
          <span title="Patience(^-^)">Loading Pages Isn't Fast</span>
       </p>
       <form class="submitUsernameForm" id="submitUsernameForm">
-         <input type="text" id="usernameField" maxlength="40" placeholder="username"></input>
-         <input type="submit" id="UsernameSubmitButton" alt="submit" value="Scan User"></input>
-         <input type="submit" id="SubredditSubmitButton" alt="submit" value="Scan Subreddit"></input>
+         <input type="text" id="usernameField" maxlength="140" placeholder="username"></input>
+         <input type="submit" id="UsernameSubmitButton" alt="Scan User" value="Scan User"></input>
+         <input type="submit" id="SubredditSubmitButton" alt="Scan Subreddit" value="Scan Subreddit"></input>
+         <input type="submit" id="PostSubmitButton" alt="Whole Link Required" value="Scan Post"></input>
 
          <br>
          Deep Scan<input id="doDefault" type="checkbox" title="Searches for activity on hate subreddits" checked></input>
@@ -103,7 +104,7 @@
    {name:"LiberalConspiracies...",minInst:5,active:true,
    subs:["KotakuInAction","sjwhate","subredditcancer","KiAChatroom"]}
    ,{name:"Make America Great Again",minInst:5,active:true,
-   subs:["the_donald","kkk","Fascist","european"]}
+   subs:["the_donald","kkk","Fascist"]}
    ];
     	$(document).ready(function(){
 
@@ -212,7 +213,6 @@
          $("#filterGroupField").val("");
          filterGroups.push({name:newFilterGroupName,minInst:5,active:true,subs:[]});
 
-         ///asdfafo;jaeoijefoijaeoi;jefioj;e
          updateLists();
          groupsListDiv.trigger("change");
 
@@ -282,6 +282,9 @@
            if(indexOf!=-1){
               username=username.substring(indexOf+"reddit.com/r/".length);
            }
+         }else if(submitActor.id=="PostSubmitButton"){
+           //WARNING: POSTS ONLY ACCEPT THE WHOLE LINK.
+           actionType="post";
          }
          else{
              var indexOf=username.indexOf("reddit.com/user/");

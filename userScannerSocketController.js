@@ -13,46 +13,66 @@ var Socket={						//the socket object
 						var data = JSON.parse(msg.data);
 						var value = data['value'];
 						var key = data['key'];
-						var Event = data['event'];
+						var eventType = data['event'];
 
 						logConsole(data);
 						//logConsole(key+" "+Event+" "+value);
 
-						if(Event=="pageEvent"){
+						if(eventType=="pageEvent"){
 							$("#OutputParagraph").html($("#OutputParagraph").html()+"<br/>"+data["value"]);
 						}
-						else if(Event=="printTest"){
+						else if(eventType=="printTest"){
 							console.log("->"+value);
 						}
-						else if(Event=="errorMessage"){
+						else if(eventType=="errorMessage"){
 							$(".outputHeader").text(data["value"]);
 						}
-						else if(Event=="Local"){								//store incoming data in localStorage
+						else if(eventType=="Local"){								//store incoming data in localStorage
 							localStorage.setItem("Local", value);	//
 						}
-						else if(Event=='startup'){
+						else if(eventType=='startup'){
 							//imgUrl=value;
 						}
-						else if(Event=="changeOutputHeader"){
+						else if(eventType=="changeOutputHeader"){
 							$(".outputHeader").text("CheckingValidity");
 						}
-						else if(Event=="clearOutputField"){
+						else if(eventType=="clearOutputField"){
 							$("#OutputParagraph").text("");
-							$(".outputHeader").text("Scanning Valid User");
-
+							var typeStr="User";
+							if(data["message"]=='p'){
+								typeStr="Post";
+							}
+							else if(data["message"]=='s'){
+								typeStr="Subreddit";
+							}
+							$(".outputHeader").text("Scanning Valid "+typeStr);
 						}
-						else if(Event=="message"){
+						else if(eventType=="message"){
 							$("#returnTextField").text(
 								data['value']);
+						}else if(eventType=="returnPostReport"){
+							var subredditHitsString="Flagged Users in post:";
+							$(".outputHeader").text("Output");
+							for (var key in subredditHits) {
+							  if (subredditHits.hasOwnProperty(key)) {
+							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key]+"<br/>";
+							  }
+							}
+							$("#OutputParagraph").html($("#OutputParagraph").html()+
+								"<br/>Username:"+data["username"]+
+								"<br/>Filter Group Hits:"+data["flaggedFilterGroupSubsCount"]+
+								"<br/>Flagged Total:"+data["flaggedCount"]+
+								"<br/>"+subredditHitsString
+							);
 						}
-						else if(Event=="returnReport"){
+						else if(eventType=="returnReport"){
 							console.log("SubredditHits",data["subredditHits"]);
 							var subredditHits=data["subredditHits"];
 							var subredditHitsString="SubReddit Hits:";
 							$(".outputHeader").text("Output");
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
-							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key]["value"]+"<br/>";
+							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key]+"<br/>";
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
