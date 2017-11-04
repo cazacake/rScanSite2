@@ -11,16 +11,18 @@
   			<script src="Resources/dist/js/bootstrap.min.js"></script>
   </head>
 <body>
+  <a href="About.html">About</a>
    <div class= "submitUsernameDiv" align="center">
       <p id="returnTextField">
          Enter a reddit username and select your filters to begin Scanning.
          <br>
          Filters are automatically saved
          <br>
-         <span title="Patience(^-^)">Loading Pages Isn't Fast</span>
+         <span title="Patience(^-^)">Wait a few seconds to connect to the server.</span>
       </p>
       <form class="submitUsernameForm" id="submitUsernameForm">
-         <input type="text" id="usernameField" maxlength="140" placeholder="username"></input>
+         <input type="text" id="usernameField" size="80" maxlength="200" placeholder="username"></input>
+         <br/>
          <input type="submit" id="UsernameSubmitButton" alt="Scan User" value="Scan User"></input>
          <input type="submit" id="SubredditSubmitButton" alt="Scan Subreddit" value="Scan Subreddit"></input>
          <input type="submit" id="PostSubmitButton" alt="Whole Link Required" value="Scan Post"></input>

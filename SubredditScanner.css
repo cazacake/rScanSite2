@@ -1,6 +1,8 @@
 .submitUsernameDiv{
-   margin: 25px;
+   margin: 10px;
 }
+body {background-color: lightgray !important;}
+
 form{
    margin: 10px;
 }
