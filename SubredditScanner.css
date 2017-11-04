@@ -49,6 +49,8 @@ input{
   color: red;
 }
 #OutputParagraph{
+    position: relative;
+    text-align: left;
     float: left;
     padding: 5px;
     margin: auto;

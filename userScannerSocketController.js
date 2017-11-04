@@ -19,7 +19,7 @@ var Socket={						//the socket object
 						//logConsole(key+" "+Event+" "+value);
 
 						if(eventType=="pageEvent"){
-							$("#OutputParagraph").html($("#OutputParagraph").html()+"<br/>"+data["value"]);
+							$("#OutputParagraph").html(data["value"]+"<br/>"+$("#OutputParagraph").html());
 						}
 						else if(eventType=="printTest"){
 							console.log("->"+value);
@@ -36,6 +36,9 @@ var Socket={						//the socket object
 						else if(eventType=="changeOutputHeader"){
 							$(".outputHeader").text("CheckingValidity");
 						}
+						else if(eventType=="changeOutputHeader2"){
+							$(".outputHeader").text(data["text"]);
+						}
 						else if(eventType=="clearOutputField"){
 							$("#OutputParagraph").text("");
 							var typeStr="User";
@@ -51,38 +54,52 @@ var Socket={						//the socket object
 							$("#returnTextField").text(
 								data['value']);
 						}else if(eventType=="returnPostReport"){
-							var subredditHitsString="Flagged Users in post:";
-							$(".outputHeader").text("Output");
+							console.log("Post Report Recieved");
+							var subredditHits=data["subredditHits"];
+							var subredditHitsString="CustomScan activity:";
+							var hateSubredditHitsString="HateSub activity:";
+							var hateSubredditHits=data["hateSubHits"];
+							$(".outputHeader").text("Post Report");
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
-							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key]+"<br/>";
+							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key];
+							  }
+							}
+							for (var key in hateSubredditHits) {
+							  if (hateSubredditHits.hasOwnProperty(key)) {
+							    hateSubredditHitsString=hateSubredditHitsString+"->"+key+":"+hateSubredditHits[key];
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
 								"<br/>Username:"+data["username"]+
-								"<br/>Filter Group Hits:"+data["flaggedFilterGroupSubsCount"]+
-								"<br/>Flagged Total:"+data["flaggedCount"]+
+								"<br/>Flagged Total:"+data["flagLevel"]+
+								"<br/>"+hateSubredditHitsString+
 								"<br/>"+subredditHitsString
 							);
 						}
 						else if(eventType=="returnReport"){
 							console.log("SubredditHits",data["subredditHits"]);
 							var subredditHits=data["subredditHits"];
-							var subredditHitsString="SubReddit Hits:";
+							var subredditHitsString="Custom SubReddit Hits:";
+							var hateSubredditHitsString="HateSub activity:";
+							var hateSubredditHits=data["hateSubHits"];
 							$(".outputHeader").text("Output");
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
 							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key]+"<br/>";
 							  }
 							}
+							for (var key in hateSubredditHits) {
+							  if (hateSubredditHits.hasOwnProperty(key)) {
+							    hateSubredditHitsString=hateSubredditHitsString+"->"+key+":"+hateSubredditHits[key];
+							  }
+							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
 							"<br/>Username:"+data["username"]+
-							"<br/>Deep Scan t/f:"+data["doDefault"]+
-							"<br/>Filter Group Hits:"+data["flaggedFilterGroupSubsCount"]+
-							//"<br/>Flagged Total:"+data["flaggedCount"]+
+							"<br/>HateSubreddit Hits:"+data["flagLevel"]+
+							"<br/>"+hateSubredditHitsString+
 							"<br/>"+subredditHitsString
 						);
-
 							if(data["doDefault"]===true){
 								$("#OutputParagraph").html($("#OutputParagraph").html()+
 								//"<br/>DefaultScan Submission Count:"+data["flaggedSubmissionCount"]+
