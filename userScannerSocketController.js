@@ -2,7 +2,8 @@ var socket;
 var Socket={						//the socket object
 	setup:function (){
 				logConsole("setup Called");
-				var host = "ws://127.0.0.1:8887/ws";
+				//var host = "ws://127.0.0.1:8887/ws";
+				var host = "wss://subredditscannerserver.herokuapp.com/";
 				socket = new WebSocket(host);
 				if (socket) {
 					socket.onopen = function() {
