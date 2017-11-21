@@ -4,14 +4,16 @@
 
 <meta charset="utf-8">
   <link type="text/css" rel="stylesheet" href="SubredditScanner.css"/>
-  	<title>UserScanner</title>
+  	<title>UserScannerLocal</title>
   			<script src="Resources/d3/d3.js"></script>
   			<script src="Resources/jquery-2.1.3.min.js"></script>
   			<link href="Resources/dist/css/bootstrap.min.css" rel="stylesheet">
   			<script src="Resources/dist/js/bootstrap.min.js"></script>
   </head>
 <body>
-  <a href="About.html">About</a>
+  <a href="About.html">Hatesub Justifications</a><br>
+  <a href="FAQ.html">FAQ</a>
+
    <div class= "submitUsernameDiv" align="center">
       <p id="returnTextField">
          Enter a reddit username and select your filters to begin Scanning.
@@ -21,10 +23,9 @@
          <span title="Patience(^-^)">Wait a few seconds to connect to the server.</span>
       </p>
       <form class="submitUsernameForm" id="submitUsernameForm">
-         <input type="text" id="usernameField" size="80" maxlength="200" placeholder="username"></input>
+         <input type="text" id="usernameField" size="90" maxlength="210" placeholder="username"></input>
          <br/>
          <input type="submit" id="UsernameSubmitButton" alt="Scan User" value="Scan User"></input>
-         <input type="submit" id="SubredditSubmitButton" alt="Scan Subreddit" value="Scan Subreddit"></input>
          <input type="submit" id="PostSubmitButton" alt="Whole Link Required" value="Scan Post"></input>
 
          <br>
