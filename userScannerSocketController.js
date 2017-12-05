@@ -97,7 +97,7 @@ var Socket={						//the socket object
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
 							"<br/>Username:  " + '<a href="https://reddit.com/user/' + data["username"] + '">' + data["username"]+
-							"<br/>HateSubreddit Hits: "+data["flagLevel"]+
+							"</a><br/>HateSubreddit Hits: "+data["flagLevel"]+
 							"<br/>"+hateSubredditHitsString+
 							"<br/>"+subredditHitsString+"<br/>"
 						);

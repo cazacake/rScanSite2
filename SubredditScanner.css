@@ -49,10 +49,10 @@ select {
 }
 
 #OutputParagraph {
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: scroll;
     font-family: monospace;
-    font-size: 12px;
+    font-size: normal;
 }
 
 #usernameField {
