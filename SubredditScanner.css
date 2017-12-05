@@ -1,14 +1,72 @@
-.submitUsernameDiv{
-   margin: 10px;
+form {
+    padding-bottom: 1%;
+    padding-left: 4%;
+    width: 60%;
 }
-body {background-color: lightgray !important;}
 
-form{
-   margin: 10px;
+input {
+   display: inline-block;
+   padding-left: 1%;
+   padding-right: 1%;
+   margin-right: 3%;
+   font-size: x-large;
 }
-input{
-   margin: 1vmin;
+
+h1, h2 {
+    display: inline-block;
+    padding-left: 2%;
+    padding-right: 2%;
 }
+
+label {
+    font-weight: normal !important;
+    font-size: x-large;
+    padding-left: 3%;
+    padding-right: 1%;
+}
+
+select {
+    font-size: x-large !important;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 3% !important;
+    margin-right: 3% !important;
+    float: left;
+}
+
+/* regarding output stuff */
+.outputDiv {
+    margin-left: 3%;
+    padding: 1%;
+    width: 60%;
+}
+
+#OutputParagraph {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: monospace;
+    font-size: large;
+}
+
+#usernameField {
+    display: inline-block;
+    font-size: x-large;
+    width: 90%;
+    border-style: none none solid none;
+}
+
+#UsernameSubmitButton {
+    font-size: x-large;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#maxPagesInput {
+    font-size: x-large;
+    border-style: none none solid none;
+}
+
+/* minor shit don't touch */
 .notConnectedSpan{
   color: red;
 
@@ -16,21 +74,33 @@ input{
 .isConnectedSpan{
   color: green;
 }
+
+/*spaghetti code stuff - most likely related to group filtering */
 .subDiv1{
    border: 1px inset black;
 
 }
-.subDiv2{
-  width:50vw;
-   border: 1px inset black;
-   overflow: scroll;
-}
+
 #groupsListDiv div{
    border: 2px inset black;
    margin: 1vmin;
    overflow-y: auto;
 
 }
+
+.groupsListDiv{
+   z-index: -1;
+   height: 30vh;
+   width: 20vw;
+   border: 5px inset black;
+   border-radius: 2vmin;
+   overflow-y: auto;
+   text-align: left;
+}
+.groupsDiv{
+   display: flex;
+}
+
 .filterElementsDiv{
    z-index: -1;
    height: 30vh;
@@ -45,28 +115,4 @@ input{
    border-style: solid !important;;
    border-width:4px !important;;
 
-}
-.outputHeader{
-  font-size: 22px;
-  color: red;
-}
-#OutputParagraph{
-    position: relative;
-    text-align: left;
-    float: left;
-    padding: 5px;
-    margin: auto;
-}
-
-.groupsListDiv{
-   z-index: -1;
-   height: 30vh;
-   width: 20vw;
-   border: 5px inset black;
-   border-radius: 2vmin;
-   overflow-y: auto;
-   text-align: left;
-}
-.groupsDiv{
-   display: flex;
 }
