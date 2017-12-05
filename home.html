@@ -329,8 +329,7 @@
             }
          }
          console.log("Submission Check");
-         var doDefault=document.getElementById("doDefault").checked;
-         var submittedPackage={'username':username,"action":actionType,"doDefault":doDefault,'maxPages':maxPages,
+         var submittedPackage={'username':username,"action":actionType,"doDefault":'true','maxPages':maxPages,
          'filterGroups':submittedFilterGroups};
          Socket.sendJsonValue(submittedPackage);
         }
