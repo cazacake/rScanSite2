@@ -63,17 +63,17 @@ var Socket={						//the socket object
 							$(".outputHeader").text("Post Report");
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
-							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key];
+							    subredditHitsString=subredditHitsString+"<br/>"+ '<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+subredditHits[key]+"<br/>";
 							  }
 							}
 							for (var key in hateSubredditHits) {
 							  if (hateSubredditHits.hasOwnProperty(key)) {
-							    hateSubredditHitsString=hateSubredditHitsString+"->"+key+":"+hateSubredditHits[key];
+							    hateSubredditHitsString=hateSubredditHitsString+"<br/>"+'<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+hateSubredditHits[key]+"<br/>";
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
-								"<br/>Username:"+data["username"]+
-								"<br/>Flagged Total:"+data["flagLevel"]+
+								"<br/>Username:  " + '<a href="https://reddit.com/user/' + data["username"] + '">' + data["username"]+
+								"</a><br/>Flagged Total:"+data["flagLevel"]+
 								"<br/>"+hateSubredditHitsString+
 								"<br/>"+subredditHitsString
 							);
@@ -87,17 +87,17 @@ var Socket={						//the socket object
 							$(".outputHeader").text("Output");
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
-							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key]+"<br/>";
+							    subredditHitsString=subredditHitsString+"<br/>"+ '<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+subredditHits[key]+"<br/>";
 							  }
 							}
 							for (var key in hateSubredditHits) {
 							  if (hateSubredditHits.hasOwnProperty(key)) {
-							    hateSubredditHitsString=hateSubredditHitsString+"->"+key+":"+hateSubredditHits[key];
+							    hateSubredditHitsString=hateSubredditHitsString+"<br/>"+'<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+hateSubredditHits[key]+"<br/>";
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
-							"<br/>Username:"+data["username"]+
-							"<br/>HateSubreddit Hits:"+data["flagLevel"]+
+							"<br/>Username:  " + '<a href="https://reddit.com/user/' + data["username"] + '">' + data["username"]+
+							"</a><br/>HateSubreddit Hits:"+data["flagLevel"]+
 							"<br/>"+hateSubredditHitsString+
 							"<br/>"+subredditHitsString
 						);
