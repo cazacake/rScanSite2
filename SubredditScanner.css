@@ -64,7 +64,11 @@ select {
     padding-left: 2%;
     padding-right: 2%;
 }
-
+#PostSubmitButton{
+  font-size: x-large;
+  padding-left: 2%;
+  padding-right: 2%;
+}
 #maxPagesInput {
     font-size: x-large;
     border-style: none none solid none;

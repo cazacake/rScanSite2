@@ -33,7 +33,8 @@
              <span title="Patience(^-^)">Wait a few seconds to connect to the server.</span>-->
          </h3>
          <br>
-         <label for="usernameField">/u/&nbsp;</label><input type="text" id="usernameField" placeholder="username"></input>
+         <label for="usernameField">
+           URL&nbsp;</label><input type="text" id="usernameField" placeholder="username"></input>
 
      </div>
      <div class="options">
@@ -41,7 +42,7 @@
         <!--<select class="filters" name="filters">-->
         </select>
 
-        <input type="submit" id="UsernameSubmitButton" alt="Scan User" value="Scan"></input>
+        <input type="submit" id="UsernameSubmitButton" alt="Scan User" value="Scan User"></input>
 
         <!-- SCAN POST BUTTON - DISABLED FOR NOW BECAUSE OF DESIGN CONSTRAINTS
          <input type="submit" id="PostSubmitButton" alt="Whole Link Required" value="Scan Post"></input>
@@ -49,6 +50,7 @@
 
          <!-- DEEP SCAN CHECKBOX - NOT SURE IF NEEDED
          <label for="doDefault">Deep Scan</label><input id="doDefault" type="checkbox" title="Searches for activity on hate subreddits" checked></input>-->
+         <input type="submit" id="PostSubmitButton" alt="Whole Link Required" value="Scan Post"></input>
 
          <label for="maxPagesInput" id="maxPagesLabel">Max # of Pages:&nbsp;</label><input type="number" id="maxPagesInput" name="quantity" min="1" max="30" value="5" placeholder="max number of pages">
      </div>
@@ -88,12 +90,8 @@
 
       </div>
 
-  </div>
-
-
-  <div class="outputDiv">
+  </div>  <div class="outputDiv">
     <h3>Output:</h3>
-    <br>
     <div id="OutputParagraph"></div>
   </div>
 
