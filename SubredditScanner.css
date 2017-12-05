@@ -34,6 +34,10 @@ select {
     float: left;
 }
 
+.information {
+    padding: 2%;
+}
+
 /* regarding output stuff */
 .outputDiv {
     margin-left: 3%;

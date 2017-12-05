@@ -68,7 +68,7 @@ var Socket={						//the socket object
 							}
 							for (var key in hateSubredditHits) {
 							  if (hateSubredditHits.hasOwnProperty(key)) {
-							    hateSubredditHitsString=hateSubredditHitsString+"<br/>"+key+": "+hateSubredditHits[key]+"<br/>";
+							    hateSubredditHitsString=hateSubredditHitsString+"<br/>"+'<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+hateSubredditHits[key]+"<br/>";
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
@@ -87,16 +87,16 @@ var Socket={						//the socket object
 							$(".outputHeader").text("Output");
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
-							    subredditHitsString=subredditHitsString+"->"+key+": "+subredditHits[key]+"<br/>";
+							    subredditHitsString=subredditHitsString+"<br/>"+ '<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+subredditHits[key]+"<br/>";
 							  }
 							}
 							for (var key in hateSubredditHits) {
 							  if (hateSubredditHits.hasOwnProperty(key)) {
-							    hateSubredditHitsString=hateSubredditHitsString+"<br/>"+key+": "+hateSubredditHits[key]+"<br/>";
+							     hateSubredditHitsString=hateSubredditHitsString+"<br/>"+'<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+hateSubredditHits[key]+"<br/>";
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
-							"<br/>Username: "+data["username"]+
+							"<br/>Username:  " + '<a href="https://reddit.com/user/' + data["username"] + '">' + data["username"]+
 							"<br/>HateSubreddit Hits: "+data["flagLevel"]+
 							"<br/>"+hateSubredditHitsString+
 							"<br/>"+subredditHitsString+"<br/>"
@@ -114,7 +114,7 @@ var Socket={						//the socket object
 					socket.onclose = function() {
 						logConsole("Socket Closed");//console.log("SocketClosed");
 						$(".outputHeader").text("Output");
-						$(".isConnectedSpan").addClass("notConnectedSpan").removeClass("isConnectedSpan").text("Not Connected");
+						$(".isConnectedSpan").addClass("notConnectedSpan").removeClass("isConnectedSpan").text("not connected");
 
 						setTimeout(function(){
 								Socket.setup();
