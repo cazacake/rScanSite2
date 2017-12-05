@@ -16,6 +16,9 @@ h1, h2 {
     display: inline-block;
     padding-left: 2%;
     padding-right: 2%;
+}h3{
+  display: inline-block;
+
 }
 
 label {
@@ -40,16 +43,16 @@ select {
 
 /* regarding output stuff */
 .outputDiv {
-    margin-left: 3%;
-    padding: 1%;
+    margin-left: 2%;
+    padding: .5%;
     width: 60%;
 }
 
 #OutputParagraph {
-    overflow-x: hidden;
+    overflow-x: scroll;
     overflow-y: scroll;
     font-family: monospace;
-    font-size: large;
+    font-size: 12px;
 }
 
 #usernameField {
@@ -86,6 +89,12 @@ select {
 /*spaghetti code stuff - most likely related to group filtering */
 .subDiv1{
    border: 1px inset black;
+   width: 24%;
+
+}
+.subDiv2{
+   border: 1px inset black;
+   width: 44%;
 
 }
 
