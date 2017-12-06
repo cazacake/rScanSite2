@@ -61,6 +61,8 @@ var Socket={						//the socket object
 							var hateSubredditHitsString="HateSub activity:";
 							var hateSubredditHits=data["hateSubHits"];
 							$(".outputHeader").text("Post Report");
+							$("#OutputParagraph").text("");
+
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
 							    subredditHitsString=subredditHitsString+"<br/>"+ '<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+subredditHits[key]+"<br/>";
@@ -80,6 +82,7 @@ var Socket={						//the socket object
 						}
 						else if(eventType=="returnReport"){
 							console.log("SubredditHits",data["subredditHits"]);
+							$("#OutputParagraph").text("");
 							var subredditHits=data["subredditHits"];
 							var subredditHitsString="Custom SubReddit Hits:";
 							var hateSubredditHitsString="HateSub activity:";

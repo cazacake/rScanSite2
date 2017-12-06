@@ -49,7 +49,7 @@ select {
 }
 
 #OutputParagraph {
-    overflow-x: hidden;
+    overflow-x: visible;
     overflow-y: scroll;
     font-family: monospace;
     font-size: normal;
