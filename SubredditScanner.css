@@ -43,14 +43,16 @@ select {
 
 /* regarding output stuff */
 .outputDiv {
-  overflow-x: scroll;
+    overflow-x: scroll;
 
     margin-left: 2%;
     padding: .5%;
-    width: 60%;
+    width: 99%;
 }
 
 #OutputParagraph {
+    float:left;
+    width=99%;
     overflow-x: scroll;
     overflow-y: scroll;
     font-family: monospace;

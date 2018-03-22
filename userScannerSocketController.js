@@ -1,13 +1,13 @@
 var socket;
 var Socket={						//the socket object
-	setup: function (){
+	setup:function (){
 				logConsole("setup Called");
-				//var host = "ws: //127.0.0.1: 8080/ws";
-				var host = "wss://subredditscannerserver.herokuapp.com/";
+				//var host = "ws://127.0.0.1:8080/ws";
+				var host = "wss://subredditscannerserver.herokuapp.com";
 				socket = new WebSocket(host);
 				if (socket) {
 					socket.onopen = function() {
-						$(".notConnectedSpan").addClass("isConnectedSpan").removeClass("notConnectedSpan").text("connected");
+						$(".notConnectedSpan").addClass("isConnectedSpan").removeClass("notConnectedSpan").text("Is Connected");
 
 					}
 					socket.onmessage = function(msg) {
@@ -57,59 +57,54 @@ var Socket={						//the socket object
 						}else if(eventType=="returnPostReport"){
 							console.log("Post Report Recieved");
 							var subredditHits=data["subredditHits"];
-							var subredditHitsString="Custom Scan activity:  ";
-							var hateSubredditHitsString="Hatesub activity:  ";
+							var subredditHitsString="CustomScan activity:";
+							var hateSubredditHitsString="HateSub activity:";
 							var hateSubredditHits=data["hateSubHits"];
 							$(".outputHeader").text("Post Report");
-							$("#OutputParagraph").text("");
-
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
-							    subredditHitsString=subredditHitsString+"<br/>"+ '<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+subredditHits[key]+"<br/>";
+							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key];
 							  }
 							}
 							for (var key in hateSubredditHits) {
 							  if (hateSubredditHits.hasOwnProperty(key)) {
-							    hateSubredditHitsString=hateSubredditHitsString+"<br/>"+'<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+hateSubredditHits[key]+"<br/>";
+							    hateSubredditHitsString=hateSubredditHitsString+"->"+key+":"+hateSubredditHits[key];
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
-								"<br/>Username:  " + '<a href="https://reddit.com/user/' + data["username"] + '">' + data["username"]+
-								"</a><br/>Flagged Total:  "+data["flagLevel"]+
-								"<br/>"+hateSubredditHitsString+
-								"<br/>"+subredditHitsString+"<br/>"
+								"<br/>Username:"+data["username"]+
+								"<br/>Flagged Total:"+data["flagLevel"]+
+								"<br/>"+hateSubredditHitsString
 							);
 						}
 						else if(eventType=="returnReport"){
 							console.log("SubredditHits",data["subredditHits"]);
 							var subredditHits=data["subredditHits"];
-							var subredditHitsString="Custom SubReddit Hits: ";
-							var hateSubredditHitsString="HateSub activity: ";
+							var subredditHitsString="Custom SubReddit Hits:";
+							var hateSubredditHitsString="HateSub activity:";
 							var hateSubredditHits=data["hateSubHits"];
 							$(".outputHeader").text("Output");
-							$("#OutputParagraph").text("");
-
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
-							    subredditHitsString=subredditHitsString+"<br/>"+ '<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+subredditHits[key]+"<br/>";
+							    subredditHitsString=subredditHitsString+"->"+key+":"+subredditHits[key]+"<br/>";
 							  }
 							}
 							for (var key in hateSubredditHits) {
 							  if (hateSubredditHits.hasOwnProperty(key)) {
-							     hateSubredditHitsString=hateSubredditHitsString+"<br/>"+'<a href="https://reddit.com/r/' + key + '">' + key+"</a>: "+hateSubredditHits[key]+"<br/>";
+							    hateSubredditHitsString=hateSubredditHitsString+"->"+key+":"+hateSubredditHits[key];
 							  }
 							}
 							$("#OutputParagraph").html($("#OutputParagraph").html()+
-							"<br/>Username:  " + '<a href="https://reddit.com/user/' + data["username"] + '">' + data["username"]+
-							"</a><br/>HateSubreddit Hits: "+data["flagLevel"]+
+							"<br/>Username:"+data["username"]+
+							"<br/>HateSubreddit Hits:"+data["flagLevel"]+
 							"<br/>"+hateSubredditHitsString+
-							"<br/>"+subredditHitsString+"<br/>"
+							"<br/>"+subredditHitsString
 						);
 							if(data["doDefault"]===true){
 								$("#OutputParagraph").html($("#OutputParagraph").html()+
-								//"<br/>DefaultScan Submission Count: "+data["flaggedSubmissionCount"]+
-								//"<br/>DefaultScan Comments Count: "+data["flaggedCommentsCount"]+
-								"<br/>DeepScan Level: "+data["flagLevel"]
+								//"<br/>DefaultScan Submission Count:"+data["flaggedSubmissionCount"]+
+								//"<br/>DefaultScan Comments Count:"+data["flaggedCommentsCount"]+
+								"<br/>DeepScan Level:"+data["flagLevel"]
 								);
 							}
 						}
@@ -118,7 +113,7 @@ var Socket={						//the socket object
 					socket.onclose = function() {
 						logConsole("Socket Closed");//console.log("SocketClosed");
 						$(".outputHeader").text("Output");
-						$(".isConnectedSpan").addClass("notConnectedSpan").removeClass("isConnectedSpan").text("not connected");
+						$(".isConnectedSpan").addClass("notConnectedSpan").removeClass("isConnectedSpan").text("Not Connected");
 
 						setTimeout(function(){
 								Socket.setup();
@@ -129,31 +124,31 @@ var Socket={						//the socket object
 				}
 			},
 
-			getValue: function(key){		//get value from server
-				var msg={event: "valueRequest",key: key};
+			getValue:function(key){		//get value from server
+				var msg={event:"valueRequest",key:key};
 				sendMessage(msg);
 			},
 
-			sendMessage: function(msg) {//accepts a json strings
+			sendMessage:function(msg) {//accepts a json strings
 				waitForSocketConnection(socket, function() {
 						socket.send(msg);
 				});
 		},
-		sendJsonValue: function(val,doEscape){//val is a json object,
+		sendJsonValue:function(val,doEscape){//val is a json object,
 			if((typeof val.key)=="string" && doEscape==true){
 				//val.key=RegExp.unescape(val.key);
 			}
 			this.sendMessage(JSON.stringify(val));
 		},
-		sendServerMessage: function(key,value,actionType){
+		sendServerMessage:function(key,value,actionType){
 			//if addExtended path ==true, add escaped(smartDashboard) to key
 				if((typeof key)=="string"){
 						//key=RegExp.unescape(key);
 				}
 			var val={
-				"key": key,
-				"value": value,
-				"action": actionType
+				"key":key,
+				"value":value,
+				"action":actionType
 			}
 			this.sendMessage(JSON.stringify(val));
 		}

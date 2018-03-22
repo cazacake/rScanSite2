@@ -61,7 +61,7 @@ var Socket={						//the socket object
 							var hateSubredditHitsString="HateSub activity:";
 							var hateSubredditHits=data["hateSubHits"];
 							$(".outputHeader").text("Post Report");
-							$("#OutputParagraph").text("");
+							//$("#OutputParagraph").text("");
 
 							for (var key in subredditHits) {
 							  if (subredditHits.hasOwnProperty(key)) {
